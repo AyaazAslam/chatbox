@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/click_button.dart';
+import 'package:flutter_application_1/components/clippers/my_loginCliper.dart';
+
+import '../components/textform_field.dart';
 
 class SettingScreens extends StatefulWidget {
   const SettingScreens({super.key});
@@ -8,8 +12,129 @@ class SettingScreens extends StatefulWidget {
 }
 
 class _SettingScreensState extends State<SettingScreens> {
+  bool? ischeck = true;
+  var height, width;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold();
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      body: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 40,
+              ),
+              SizedBox(
+                width: 150,
+              ),
+              Text(
+                "Login",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 23),
+              )
+            ],
+          ),
+          ClipPath(
+            // clipper: MyLoginCliper(),
+            child: Container(
+              margin: EdgeInsets.all(30),
+              height: height * 0.5,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30), color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    TextFormWfield(
+                      icon: Icons.mail,
+                      inputText: 'EMAIL/PASSWORD',
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    TextFormWfield(
+                      icon: Icons.lock,
+                      inputText: 'PASSWORD',
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            // tristate: true,
+                            value: ischeck,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                ischeck = value;
+                              });
+                            }),
+                        Text("Remeber Me")
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        height: height * 0.1,
+                        width: width * 0.1,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue,
+                        ),
+                        child: Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: Container(
+              height: height * 0.3,
+              width: width,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30), color: Colors.white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have and acount?",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: width * 0.7,
+                    child: CLickButton(
+                        text: "Sign UP", color: Colors.blue, onPressed: () {}),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

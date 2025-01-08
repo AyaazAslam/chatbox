@@ -52,7 +52,7 @@ class SignUpEmailScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
-            child: TextFormWidge(
+            child: TextFormWfield(
               inputText: "Your name",
             ),
           ),
@@ -61,7 +61,7 @@ class SignUpEmailScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
-            child: TextFormWidge(
+            child: TextFormWfield(
               inputText: "Your email",
             ),
           ),
@@ -70,7 +70,7 @@ class SignUpEmailScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
-            child: TextFormWidge(
+            child: TextFormWfield(
               inputText: "Your password",
             ),
           ),
@@ -79,7 +79,7 @@ class SignUpEmailScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
-            child: TextFormWidge(
+            child: TextFormWfield(
               inputText: "confirm password",
             ),
           ),

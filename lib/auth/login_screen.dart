@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
-            child: TextFormWidge(
+            child: TextFormWfield(
               inputText: "Your email",
             ),
           ),
@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
-            child: TextFormWidge(
+            child: TextFormWfield(
               inputText: "Password",
             ),
           ),

@@ -13,50 +13,167 @@ class BottomNavigationScreen extends StatefulWidget {
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int currentIndex = 0;
+  PageController controller = PageController();
 
-  List screens = [
-    MainHomeScreen(),
-    ChatScreen(),
-    CallScreen(),
-    SettingScreens()
-  ];
-
-  void onchanges(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  var height, width;
 
   @override
   Widget build(BuildContext context) {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       // appBar: AppBar(title: const Text('Bottom Navigation Example')),
-      body: screens.elementAt(currentIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        // backgroundColor: Colors.greenAccent.withOpacity(0.1),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        currentIndex: currentIndex,
-        onTap: onchanges,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.call_sharp),
-            label: 'Calls',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.contacts),
-            label: 'Contacts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+      body: SizedBox(
+        height: height,
+        width: width,
+        child: Column(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  //  scrollDirection: Axis.vertical,
+                  controller: controller,
+                  onPageChanged: (value) {
+                    setState(() {
+                      currentIndex = value;
+                    });
+                    print(value);
+                  },
+                  children: const [
+                    MainHomeScreen(),
+                    ChatScreen(),
+                    CallScreen(),
+                    SettingScreens()
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: height * 0.07,
+              width: width,
+              decoration: const BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(20))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      controller.jumpToPage(0);
+                    },
+                    child: SizedBox(
+                      height: height,
+                      width: width * 0.15,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.chat,
+                            color:
+                                currentIndex == 0 ? Colors.blue : Colors.black,
+                          ),
+                          Text(
+                            "Chat",
+                            style: TextStyle(
+                              color: currentIndex == 0
+                                  ? Colors.blue
+                                  : Colors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      controller.jumpToPage(1);
+                    },
+                    child: SizedBox(
+                      height: height,
+                      width: width * 0.15,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.call_sharp,
+                            color:
+                                currentIndex == 1 ? Colors.blue : Colors.black,
+                          ),
+                          Text(
+                            "Calls",
+                            style: TextStyle(
+                              color: currentIndex == 1
+                                  ? Colors.blue
+                                  : Colors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      controller.jumpToPage(2);
+                    },
+                    child: SizedBox(
+                      height: height,
+                      width: width * 0.15,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.contacts,
+                            color:
+                                currentIndex == 2 ? Colors.blue : Colors.black,
+                          ),
+                          Text(
+                            "Contacts",
+                            style: TextStyle(
+                              color: currentIndex == 2
+                                  ? Colors.blue
+                                  : Colors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      controller.jumpToPage(3);
+                    },
+                    child: SizedBox(
+                      height: height,
+                      width: width * 0.15,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.settings,
+                              color: currentIndex == 3
+                                  ? Colors.blue
+                                  : Colors.black),
+                          Text(
+                            "Settings",
+                            style: TextStyle(
+                              color: currentIndex == 3
+                                  ? Colors.blue
+                                  : Colors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
