@@ -7,7 +7,7 @@ class MyPainter extends CustomPainter {
     var paint = Paint()
       ..color = Colors.yellow
       ..strokeWidth = 20.0;
-
+      // ..color=Colors.yellow
     var paint1 = Paint()
       ..color = Colors.pink
       ..strokeWidth = 20.0;
